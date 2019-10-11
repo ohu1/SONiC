@@ -11,7 +11,6 @@ Diagnostic information aggregated presentation
   * [Definition/Abbreviation](#definitionabbreviation)
 
 # List of Tables
-[Table 1: Abbreviations](#table-1-abbreviations)
 
 # Revision
 | Rev |     Date    |       Author       | Change Description                |
