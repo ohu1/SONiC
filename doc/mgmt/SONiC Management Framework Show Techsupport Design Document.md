@@ -25,11 +25,6 @@ This document describes the high level design for the "show techsupport" command
 
 # Definition/Abbreviation
 
-### Table 1: Abbreviations
-| **Term**                 | **Meaning**                         |
-|--------------------------|-------------------------------------|
-| XYZ                      | Term description                    |
-
 # 1 Feature Overview
 
 Provide Management Framework functionality to process the "show techsupport" command:
@@ -108,7 +103,19 @@ TBD: (The base for RPC based Sonic Yang models is currently being developed.)
 N/A
 #### 3.6.2.2 Show Commands
 
-show techsupport [-h | -? | --help] | [--verbose] [--date TEXT] — Gather information for troubleshooting. Display the name of a file containing the resulting group of collected information items in a compressed "tar" file.
+show techsupport [-h | -? | --help] | [--verbose] [--since TEXT] — Gather information for troubleshooting. Display the name of a file containing the resulting group of collected information items in a compressed "tar" file.
+
+Syntax Description:
+
+|    Keyword    | Description |
+|:-----------------|:-----------|
+| -h, -?, or --help | Any [one] of these options cause display of a "help" message providing a summary of the command syntax and options. See the example below.
+| --verbose | The "--verbose" option provides additional detailed information as part of the stored content for some of the collected items. This option is passed to the host process for use during invocation of the applicable information gathering sub-functions.
+| --since TEXT | This option uses a text string (in the format returned by the Linux "date" command) to restrict the time scope for some of the information items to be collected (e.g. log files). It is passed to the host process and, if the date/time specification is valid, it is used during invocation of the applicable information gathering sub-functions.
+
+Command Mode: User EXEC
+
+Example:
 
 sonic# show techsupport
 
