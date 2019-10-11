@@ -193,8 +193,8 @@ Refer to section 1.1.3
     - Result: Verify that an error is returned.
 
 - "verbose" option    
- - Trigger: Execute the command with the "--verbose" option.
- - Result: Same as the "Basic command execution" case. Additionally, confirm that the expected additional detail is present by examining one of the affected sub-files.
+  - Trigger: Execute the command with the "--verbose" option.
+  - Result: Same as the "Basic command execution" case. Additionally, confirm that the expected additional detail is present by examining one of the affected sub-files.
 
 # 10 Internal Design Information
 N/A
