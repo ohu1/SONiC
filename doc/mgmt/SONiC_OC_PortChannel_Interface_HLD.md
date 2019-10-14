@@ -1,8 +1,8 @@
 # PortChannel
-Openconfig support for PortChannel interfaces
+OpenConfig support for PortChannel interfaces
 
 # High Level Design Document
-#### Rev 0.1
+#### Rev 0.3
 
 # Table of Contents
   * [List of Tables](#list-of-tables)
@@ -17,7 +17,7 @@ Openconfig support for PortChannel interfaces
 # Revision
 | Rev |     Date    |       Author       | Change Description                |
 |:---:|:-----------:|:------------------:|-----------------------------------|
-| 0.1 | 09/09/2019  |   Tejaswi Goel, Arthi Sivanantham  | Initial version   |
+| 0.3 | 09/09/2019  |   Tejaswi Goel, Arthi Sivanantham  | Initial version   |
 
 # About this Manual
 This document provides general information about OpenConfig support for PortChannel interfaces handling in SONiC.
@@ -48,7 +48,7 @@ Provide management framework capabilities to handle:
 Provide management framework support to existing SONiC capabilities with respect to PortChannel.
 
 ### 1.1.2 Configuration and Management Requirements
-- IS-CLI style configuration and show commands
+- CLI style configuration and show commands
 - REST API support
 - gNMI Support
 
@@ -285,11 +285,18 @@ sonic(conf-if-po1)# no mtu
 sonic(conf-if-po1)# shutdown
 sonic(conf-if-po1)# no shutdown
 ```
-### Configures an IP address of the interface.
+### Configures an IPv4 address of the interface.
 `ip address <ip-address with mask> | no ip address <ip-address>`
 ```
 sonic(conf-if-po1)# ip address 2.2.2.2/24
 sonic(conf-if-po1)# no ip address 2.2.2.2
+```
+### Configures an IPv6 address of the interface.
+`ipv6 address <ipv6-address with mask> | no ipv6 address <ipv6-address>`
+```
+sonic(config)# interface Ethernet 4
+sonic(conf-if-Ethernet4)# ipv6 address a::e/64
+sonic(conf-if-Ethernet4)# no ipv6 address a::e
 ```
 ### Add port member
 `channel-group <channel-number>`
@@ -333,7 +340,6 @@ Group Port-Channel           Type     Protocol  Member Ports
 ```
 sonic# show interface PortChannel 1
 PortChannel 1 is up, line protocol is down, mode LACP
-Interface index is 49
 MTU 1532 bytes, IP MTU 1500 bytes
 Minimum number of links to bring PortChannel up is 1
 LACP mode active, interval slow, priority 65535, address 90:b1:1c:f4:a8:7e
@@ -353,9 +359,6 @@ Output statistics:
 #### 3.6.2.3 Debug Commands
 N/A
 
-#### 3.6.2.4 IS-CLI Compliance
-N/A
-
 ### 3.6.3 REST API Support
 
 ### Create/Delete a PortChannel 
@@ -369,9 +372,8 @@ N/A
 #### Add/Remove port member
 - `/openconfig-interfaces:interfaces/interface={name}/openconfig-if-ethernet:ethernet/config/openconfig-if-aggregate:aggregate-id`
 #### Get PortChannel details
-- `/openconfig-interfaces:interfaces/ interface={name}/state/[admin-status | mtu | oper-status]`
-- `/openconfig-interfaces:interfaces/interface={name}/openconfig-if-aggregate:aggregation/state`
-- `/openconfig-interfaces:interfaces/interface={name}/openconfig-if-ethernet:ethernet/state/openconfig-if-aggregate:aggregate-id`
+- `/openconfig-interfaces:interfaces/ interface={name}/state`
+- `/openconfig-interfaces:interfaces/interface={name}/openconfig-if-aggregate:aggregation/state/[min-links|member]`
 
 # 4 Flow Diagrams
 N/A
